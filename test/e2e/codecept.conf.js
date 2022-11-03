@@ -12,7 +12,7 @@ exports.config = {
     Playwright: {
       url: testConfig.TestUrl,
       show: testConfig.TestShowBrowserWindow,
-      restart: false,
+      restart: true,
       timeout: 5000,
       waitForNavigation: 'domcontentloaded',
       waitForTimeout: 10000,
