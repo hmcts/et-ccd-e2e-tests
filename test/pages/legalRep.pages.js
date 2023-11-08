@@ -2,7 +2,7 @@ const { I } = inject();
 
 module.exports = {
   applyButtonOnLegalRep: '.workbasket-filters-apply',
-  manageCasesLinkLegalRep: 'hmcts-header__link',
+  manageCasesLinkLegalRep: '[aria-label="Manage Cases"]',
   nocLinkLegalRep: '[href="/noc"]',
   continueButtonLegalRep: '.button',
   caseidFillfield: '#caseRef',
@@ -27,7 +27,7 @@ module.exports = {
   // prevent NOC process from failing
   // NOC process tend to fail is existing applications are not loaded
   loadExistingApplications(option) {
-    I.waitForElement(this.linkToCasesLegalRep, 30);
+    I.waitForElement(this.nocLinkLegalRep, 30);
     I.click(this.linkToCasesLegalRep);
     I.waitForElement(this.caseTypeDropdown, 30);
     I.refreshPage();
@@ -38,10 +38,10 @@ module.exports = {
     try {
       switch (option) {
         case 'Eng/Wales - Singles':
-          I.selectOption(this.caseTypeDropdown, '2: Object');
+          I.selectOption(this.caseTypeDropdown, selectedWorkAddress);
           break;
         case 'Scotland - Singles':
-          I.selectOption(this.caseTypeDropdown, '5: Object');
+          I.selectOption(this.caseTypeDropdown, selectedWorkAddress);
           break;
         default:
           throw new Error('... check you options or add new option');
